@@ -1,3 +1,13 @@
+<?php
+
+    include("connection.php");
+
+    $tourDatesQuery = "SELECT * FROM touring ORDER BY `dates` DESC LIMIT 10";
+    $tourDates = mysqli_query($connection, $tourDatesQuery);
+
+?>
+
+
 <!doctype html>
 <html>
 <head>
@@ -84,6 +94,10 @@
     #myCarousel img{
     }
     
+    .table-responsive{
+        overflow-x: auto;
+    }
+    
     @media (max-width: 480px) {
         
         #sitemotto{
@@ -168,9 +182,9 @@
     
         <div class="row">
             
-            <div class="col-md-6">
+            <div class="col-md-6 col-xs-12">
    
-                <h3>About me</h3>
+                <h2>About me</h2>
                 <hr />
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce viverra hendrerit dui. Nulla sodales rutrum lacus a imperdiet. Etiam faucibus nunc eget nunc faucibus scelerisque. Donec lobortis rhoncus urna vel feugiat. Ut tellus odio, viverra eget vestibulum bibendum, placerat ut tortor. </p>
                 
@@ -207,7 +221,7 @@
                 
             </div>
             
-            <div class="col-md-6">
+            <div class="col-md-6 col-xs-12">
             
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                   <!-- Indicators -->
@@ -248,8 +262,41 @@
                     </a>
                 </div>
             
-            </div>           
+            </div>            
         </div>
+        
+        <div class="row">
+        
+            <div class="col-md-12">
+                
+                <h2>Dates</h2>
+                <hr />
+                
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th>When</th>
+                            <th>Where</th>
+                            <th>Gates/Price</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <?php while($row = mysqli_fetch_array($tourDates, MYSQLI_ASSOC)) 
+                                {
+                                    echo "<tr>
+                                        <td>".$row['dates']."</td>
+                                        <td>".$row['places']."</td>
+                                        <td>".$row['info']."</td>
+                                        </tr>";
+                                }?>
+                        </tbody>
+                    </table>               
+                </div>
+                
+            </div>                    
+        </div>
+        
     
     </div>
     
