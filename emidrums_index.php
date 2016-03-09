@@ -1,7 +1,6 @@
 <?php
 
     include("connection.php");
-    include("contact_procedure.php");
 
     $tourDatesQuery = "SELECT * FROM touring ORDER BY `dates` DESC LIMIT 10";
     $tourDates = mysqli_query($connection, $tourDatesQuery);
@@ -67,6 +66,7 @@
     }
       
     #sitemotto{
+        opacity: 0.1;
         color: red;
         position: relative;
         top: -100px;
@@ -77,11 +77,7 @@
         padding: 0;
         font-size: 3em;
     }
-    
-    .individualcontainer{
-        
-    }
-    
+  
     #myCarousel{
         max-width: 500px;
         max-height: 400px;
@@ -104,7 +100,7 @@
         background-color: #eae9e8; 
         border-radius: 10px;
     }
-    
+
     @media (max-width: 480px) {
         
         #sitemotto{
@@ -163,9 +159,9 @@
             <div class="collapse navbar-collapse" id="navbar">
                 
                 <ul class="nav navbar-nav">
-                    <li><a href="">Page1</a></li>
-                    <li><a href="">Page2</a></li>                                
-                    <li><a href="">Page3</a></li>
+                    <li><a href="#aboutme">About me</a></li>
+                    <li><a href="#dates">Dates</a></li>                                
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
                 
             </div>
@@ -179,15 +175,15 @@
         <div class="row">
             <div class="col-md-12">
                 <img class="img-responsive" src="imgs/EmiStudio.png" id="toppic"/>
-                <h1 class="text-center" id="sitemotto">El ritmo es la base de la vida....</h1>
+                <h1 class="text-center" id="sitemotto">&quot;El ritmo es la base de la vida....&quot;</h1>
             </div>
         </div>    
         
     </div>
     
-    <div class="container individualcontainer">
+    <div class="container individualcontainer" id="aboutme">
     
-        <div class="row">
+        <div class="row" id="aboutme">
             
             <div class="col-md-6 col-xs-12">
    
@@ -271,7 +267,7 @@
             </div>            
         </div>
         
-        <div class="row">
+        <div class="row" id="dates">
         
             <div class="col-md-12">
                 
@@ -303,7 +299,7 @@
             </div>                    
         </div>
         
-        <div class="row">
+        <div class="row" id="contact">
             <div class="col-md-12">
                 
                 <h2>Contact</h2>
@@ -311,30 +307,30 @@
                 
                 <form method="post" class="col-md-6" id="contform">
                     
-                    <h4 class="text-center">Send me an Message!</h4>
+                    <h4 class="text-center">Send me a message!</h4>
 
-                    <?php echo $result  ?>
-
+                    <div id="result-email"></div>                  
+                    
                     <div class="form-group">
                         <label for="receiver">From:</label>
-                        <input type="text" class="form-control" name="sender" placeholder="email" value="<?php echo $_POST["sender"] ?>"/>
+                        <input type="text" class="form-control" name="sender" id="sender" placeholder="email" />
                     </div>
 
                     <div class="form-group">
                         <label for="subject">Subject:</label>
-                        <input type="text" class="form-control" name="subject" />
+                        <input type="text" class="form-control" name="subject" id="subject" />
                     </div>
 
                     <div class="form-group">
                         <label for="msg">Your Message:</label>
-                        <textarea class="form-control" name="msg" placeholder="Type here..." rows="8" ><?php echo $body ?></textarea>
+                        <textarea class="form-control" name="msg" id="msg" placeholder="Type here..." rows="8"></textarea>
                     </div>
 
                     <br />
                     <br />
 
                     <div class="form-group">
-                        <input class="form-control text-center btn btn-success btn-sm" id="send-email" name="submit_email" type="submit" value="SEND!">
+                        <input class="form-control text-center btn btn-success btn-sm" name="submit_email" id="submit_email" type="button" value="SEND!">
                     </div>
                 
                 </form>
@@ -343,19 +339,17 @@
         </div>
 
     </div>
-    
-    
-    
 
+    
+  
 <script type="text/javascript">
 
-    function resizeContHeight {         
+    function resizeContHeight() {         
         $(".individualcontainer").css("min-height", $(window).height());            
     }
 
-    resizeContHeight();
-
-    $(window).resize(resizeContHeight());  
+    //resizeContHeight();
+    //$(window).resize(resizeContHeight());  
 
     $(window).scroll(function () {
 
@@ -364,21 +358,31 @@
 
         $("#top-img-cont #toppic").css({
             "opacity" : ((height - scrollTop) / height)
-        }); 
+        });
+        
+        $("#sitemotto").css({"opacity" : (scrollTop / height)});
 
     });
 
     $(function(){
         $('.carousel').carousel({
-        interval: 1000
+        interval: 4000
         });
     });
     
-    $("#send-email").click(function(event){
+    $("#submit_email").click(function(){
+                
+        $("#result-email").hide();
         
-        event.preventDefault();
-        
-        $.post("contact_procedure.php");
+        var sender = $("#sender").val();
+        var msg = $("textarea#msg").val();
+        var subject = $("#subject").val();
+       
+        $.post("contact_procedure.php", {sender:sender, msg:msg, subject:subject}, function(data){
+            
+            $("#result-email").html(data);
+            $("#result-email").fadeIn();           
+        });
         
     });
             

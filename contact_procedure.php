@@ -1,31 +1,30 @@
 <?php
 
-    if($_POST["submit_email"])
-    {
         $emailTo="akak@hotmail.it";
         $subject=$_POST["subject"];
         $body=$_POST["msg"];
         $headers="From: ".$_POST["sender"];
 
-        $message;
-        $result;
+        $error="";
+        $result="";
 
         if(!$_POST["sender"] OR !filter_var($_POST["sender"], FILTER_VALIDATE_EMAIL))
-            $message.= "Please enter your <strong>email address</strong>";     
+            $errors .= "Please enter a <strong>valid email address!</strong><br />";     
 
         if(!$_POST["msg"])
-            $message.= "<br />Please enter a <strong>message</strong>";     
+            $errors .= "Please enter a <strong>message!</strong>";     
 
-        if ($message !="")
-            $result="<div class='alert alert-danger'>".$message."</div>";
+        if ($errors !="")
+            $result = "<div class='alert alert-danger'>".$errors."</div>";
         else
         {
-            if(mail($emailTo, "Message from MAIL FORM subject: ".$subject, $body, $headers))
-            {
-                $result="<div class='alert alert-success'>Your message was successfully sent!</div>";
-            }
+            if(mail($emailTo, "Message from EMIDRUMS.COM --> subject: ".$subject, $body, $headers))
+                $result = "<div class='alert alert-success'>Your message was successfully sent!</div>";
         }
-    }
+
+
+        echo $result;
+
 ?>
     
 

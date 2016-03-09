@@ -43,7 +43,7 @@
     <br />
     <br />
     <label for="gatesAndInfo">Insert additional info for the show (gates, price, ecc...)</label>
-    <input type="text" name="gatesAndInfo" value="<?php echo $_POST['gatesAndInfo'] ?>" />
+    <textarea name="gatesAndInfo"><?php echo $_POST['gatesAndInfo'] ?></textarea>
     <br />
     <br />
     <input type="submit" name="submit" value="upload new date!!!!" />
