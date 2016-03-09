@@ -1,6 +1,7 @@
 <?php
 
     include("connection.php");
+    include("contact_procedure.php");
 
     $tourDatesQuery = "SELECT * FROM touring ORDER BY `dates` DESC LIMIT 10";
     $tourDates = mysqli_query($connection, $tourDatesQuery);
@@ -64,8 +65,7 @@
         width: 100%;
         max-height: 700px;
     }
-    
-   
+      
     #sitemotto{
         color: red;
         position: relative;
@@ -96,6 +96,13 @@
     
     .table-responsive{
         overflow-x: auto;
+    }
+    
+    #contform{       
+        padding: 25px;
+        margin: 0;
+        background-color: #eae9e8; 
+        border-radius: 10px;
     }
     
     @media (max-width: 480px) {
@@ -169,12 +176,12 @@
     
     <div class="container individualcontainer" id="top-img-cont">
         
-            <div class="row">
-                <div class="col-md-12">
-                    <img class="img-responsive" src="imgs/EmiStudio.png" id="toppic"/>
-                    <h1 class="text-center" id="sitemotto">El ritmo es la base de la vida....</h1>
-                </div>
-            </div>    
+        <div class="row">
+            <div class="col-md-12">
+                <img class="img-responsive" src="imgs/EmiStudio.png" id="toppic"/>
+                <h1 class="text-center" id="sitemotto">El ritmo es la base de la vida....</h1>
+            </div>
+        </div>    
         
     </div>
     
@@ -217,8 +224,7 @@
                 </div>     
             </div>
             -->
-                
-                
+                               
             </div>
             
             <div class="col-md-6 col-xs-12">
@@ -297,43 +303,88 @@
             </div>                    
         </div>
         
-    
+        <div class="row">
+            <div class="col-md-12">
+                
+                <h2>Contact</h2>
+                <hr />
+                
+                <form method="post" class="col-md-6" id="contform">
+                    
+                    <h4 class="text-center">Send me an Message!</h4>
+
+                    <?php echo $result  ?>
+
+                    <div class="form-group">
+                        <label for="receiver">From:</label>
+                        <input type="text" class="form-control" name="sender" placeholder="email" value="<?php echo $_POST["sender"] ?>"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject:</label>
+                        <input type="text" class="form-control" name="subject" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="msg">Your Message:</label>
+                        <textarea class="form-control" name="msg" placeholder="Type here..." rows="8" ><?php echo $body ?></textarea>
+                    </div>
+
+                    <br />
+                    <br />
+
+                    <div class="form-group">
+                        <input class="form-control text-center btn btn-success btn-sm" id="send-email" name="submit_email" type="submit" value="SEND!">
+                    </div>
+                
+                </form>
+
+            </div>
+        </div>
+
     </div>
     
     
-   
-    <!-- link to external javascript file(s) - if present
-    <script type="text/javascript" scr="pathToFile"></script>
-    -->
     
-    <script type="text/javascript">
-        
-        function resizeContHeight {         
-            $(".individualcontainer").css("min-height", $(window).height());            
-        }
-        
-        resizeContHeight();
-           
-        $(window).resize(resizeContHeight());  
-        
-        $(window).scroll(function () {
-            
-            var scrollTop = $(window).scrollTop();
-            var height = $(window).height();
 
-            $("#top-img-cont #toppic").css({
-                "opacity" : ((height - scrollTop) / height)
-            }); 
-            
+<script type="text/javascript">
+
+    function resizeContHeight {         
+        $(".individualcontainer").css("min-height", $(window).height());            
+    }
+
+    resizeContHeight();
+
+    $(window).resize(resizeContHeight());  
+
+    $(window).scroll(function () {
+
+        var scrollTop = $(window).scrollTop();
+        var height = $(window).height();
+
+        $("#top-img-cont #toppic").css({
+            "opacity" : ((height - scrollTop) / height)
+        }); 
+
+    });
+
+    $(function(){
+        $('.carousel').carousel({
+        interval: 1000
         });
+    });
+    
+    $("#send-email").click(function(event){
         
-        $(function(){
-            $('.carousel').carousel({
-            interval: 1000
-            });
-        });
+        event.preventDefault();
+        
+        $.post("contact_procedure.php");
+        
+    });
             
     </script>
+    
+    
    
 </body>
 </html>
