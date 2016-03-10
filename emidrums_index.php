@@ -4,6 +4,22 @@
 
     $tourDatesQuery = "SELECT * FROM touring ORDER BY `dates` DESC LIMIT 10";
     $tourDates = mysqli_query($connection, $tourDatesQuery);
+    $datesResult;
+    $datesResultPanel;
+
+    while($row = mysqli_fetch_array($tourDates, MYSQLI_ASSOC)) 
+    {
+        $datesResult .= "<tr>
+        <td>".$row['dates']."</td>
+        <td>".$row['places']."</td>
+        <td>".$row['info']."</td>
+        </tr>";
+        
+        $datesResultPanel .= "<tr>
+        <td>".$row['dates']."</td>
+        <td>".$row['places']."</td>
+        </tr>";
+    }
 
 ?>
 
@@ -77,8 +93,36 @@
         padding: 0;
         font-size: 3em;
     }
-  
+    
+    #datespan{
+        position: absolute;
+        z-index: 2;
+        top: 125px;
+        right: 5%;
+        max-height: 70%;
+        min-width: 30%;
+        font-size: .8em;
+        overflow: scroll;
+        background: rgba(255,255,255,0.4);
+        border: none;
+        table-layout: inherit;
+        word-wrap: break-word;
+    }
+    
+    #datespan a {
+        font-size: .7em;
+    }
+ 
     #myCarousel{
+        max-width: 500px;
+        max-height: 400px;
+        padding: 0px;
+        margin:0 auto;
+        overflow: hidden;
+        margin-top: 100px;
+    }
+    
+    #videoCarousel{
         max-width: 500px;
         max-height: 400px;
         padding: 0px;
@@ -103,27 +147,24 @@
 
     @media (max-width: 480px) {
         
-        #sitemotto{
-            font-size: 0.7em;
-            top: -25px;}
-        
-        body{}
-        
-        #myCarousel{margin-top: 64px; max-height: 200px;}
-        
+        #sitemotto{font-size: 0.7em; top: -25px;}     
+        #datespan{display: none;}        
+        #myCarousel{margin-top: 64px; max-height: 200px;}        
         #toppic{max-height: 200px;}
 	}
 
-
     @media (min-width: 481px) and (max-width: 767px) {
+        
         body{font-size: 16px;}
     }
 
     @media (min-width: 768px) and (max-width: 979px) {
+        
         body{font-size: 16px;}
 	}
 
     @media (min-width: 980px) {
+        
         body{font-size: 16px;}
 	}
         
@@ -174,8 +215,27 @@
         
         <div class="row">
             <div class="col-md-12">
+                
+                <div class="panel panel-default" id="datespan">
+                    <h4 class="text-center">Dates <a href="#dates">(more info)</a></h4>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>When</th>
+                                        <th>Where</th>
+                                    </tr>
+                                </thead>
+                                <tbody><?php echo $datesResultPanel; ?></tbody>
+                            </table>               
+                        </div>    
+                        </div>
+                    </div>
+                
                 <img class="img-responsive" src="imgs/EmiStudio.png" id="toppic"/>
                 <h1 class="text-center" id="sitemotto">&quot;El ritmo es la base de la vida....&quot;</h1>
+                
             </div>
         </div>    
         
@@ -241,7 +301,7 @@
                     </div>
 
                 <div class="item">
-                    <img src="imgs/pic02.jpg" alt="Chania">
+                    <img src="https://lh4.googleusercontent.com/-uWxlpUVDPkw/VnxAiJFm6gI/AAAAAAAABvU/YMFzOC-TkXA/w1720-h1290-no/15%2B-%2B1" alt="Chania">
                 </div>
 
                 <div class="item">
@@ -267,8 +327,7 @@
             </div>            
         </div>
         
-        <div class="row" id="dates">
-        
+        <div class="row" id="dates">        
             <div class="col-md-12">
                 
                 <h2>Dates</h2>
@@ -283,16 +342,7 @@
                             <th>Gates/Price</th>
                           </tr>
                         </thead>
-                        <tbody>
-                            <?php while($row = mysqli_fetch_array($tourDates, MYSQLI_ASSOC)) 
-                                {
-                                    echo "<tr>
-                                        <td>".$row['dates']."</td>
-                                        <td>".$row['places']."</td>
-                                        <td>".$row['info']."</td>
-                                        </tr>";
-                                }?>
-                        </tbody>
+                        <tbody><?php echo $datesResult; ?></tbody>
                     </table>               
                 </div>
                 
@@ -340,8 +390,7 @@
 
     </div>
 
-    
-  
+      
 <script type="text/javascript">
 
     function resizeContHeight() {         
@@ -356,7 +405,7 @@
         var scrollTop = $(window).scrollTop();
         var height = $(window).height();
 
-        $("#top-img-cont #toppic").css({
+        $("#toppic, #datespan").css({
             "opacity" : ((height - scrollTop) / height)
         });
         
