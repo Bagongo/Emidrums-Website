@@ -115,22 +115,13 @@
  
     #myCarousel{
         max-width: 500px;
-        max-height: 400px;
+        max-height: 400px !important;
         padding: 0px;
         margin:0 auto;
         overflow: hidden;
         margin-top: 100px;
     }
-    
-    #videoCarousel{
-        max-width: 500px;
-        max-height: 400px;
-        padding: 0px;
-        margin:0 auto;
-        overflow: hidden;
-        margin-top: 100px;
-    }
-    
+
     #myCarousel img{
     }
     
@@ -140,7 +131,6 @@
     
     #contform{       
         padding: 25px;
-        margin: 0;
         background-color: #eae9e8; 
         border-radius: 10px;
     }
@@ -349,7 +339,33 @@
             </div>                    
         </div>
         
+        <div class="row">
+            
+            <div class="col-md-6 col-xs-12">
+                
+                <h2>Videos</h2>
+                <hr />            
+
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/3DS268AXc_s?list=PLQlLGuoa9jFUlyb9Tc4tT-XdM0OdRFWH0" frameborder="0" allowfullscreen></iframe>
+                </div>               
+            </div>
+            
+            <div class="col-md-6 col-xs-12">
+                
+                <h2>Tunes</h2>
+                <hr />
+                
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/243523529&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+                </div>               
+            </div>
+            
+        </div>
+            
+        
         <div class="row" id="contact">
+            
             <div class="col-md-12">
                 
                 <h2>Contact</h2>
