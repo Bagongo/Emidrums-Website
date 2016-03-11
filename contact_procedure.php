@@ -15,11 +15,11 @@
             $errors .= "Please enter a <strong>message!</strong>";     
 
         if ($errors !="")
-            $result = "<div class='alert alert-danger'>".$errors."</div>";
+            $result = "<div class='alert alert-danger text-center'>".$errors."</div>";
         else
         {
             if(mail($emailTo, "Message from EMIDRUMS.COM --> subject: ".$subject, $body, $headers))
-                $result = "<div class='alert alert-success'>Your message was successfully sent!</div>";
+                $result = "<div class='alert alert-success text-center'>Your message was successfully sent!</div>";
         }
 
 

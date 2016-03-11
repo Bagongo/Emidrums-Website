@@ -65,10 +65,9 @@
     -->
     
 <style type="text/css">
-
-    
+   
     #top-img-cont{
-        margin: 0;
+        overflow-x: hidden;
         padding: 0;
         width: 100%;     
     }
@@ -92,6 +91,16 @@
         margin: 0;
         padding: 0;
         font-size: 3em;
+    }
+    
+    a {
+        color: #0f90ef;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        color: #0476a0;
+        text-decoration: none;
     }
     
     #datespan{
@@ -128,11 +137,60 @@
     .table-responsive{
         overflow-x: auto;
     }
+
+    .ul-about {
+        list-style-type: none;
+        margin: 20px 0 0 8px;
+        padding: 0;
+    }
     
-    #contform{       
+    .ul-about li{
+        font-family: Arial-Black, sans-serif;
+        margin-top: 5px;
+        
+    }
+    
+    .tab-pane{
+        height: 250px;
+        overflow: scroll;
+    }
+    
+    .standard-icon{
+        height: 35px;
+        width: auto;
+        margin: 0;
+    }
+    
+    #contform{ 
         padding: 25px;
         background-color: #eae9e8; 
         border-radius: 10px;
+    }
+    
+    #submit_email{
+        width: 35%;
+    }
+    
+    #link-box{
+        padding: 25px;
+        background-color: #a5a5a4; 
+        border-radius: 10px;
+    }
+    
+    .center-block{
+        height: 100%;
+        background-color: azure;
+    }
+       
+    #footer{
+        height: 100px;
+        margin: 25px 0 0 0;        
+    }
+    
+    .logo-images{
+        height: 50px;
+        width: auto;
+        margin: 25px 10px;
     }
 
     @media (max-width: 480px) {
@@ -173,7 +231,7 @@
                 
                 <!-- The header contains the logo (BRAND)... -->
                 
-                <a href="" class="navbar-brand"> SOME LOGO HERE....</a>
+                <a href="" class="navbar-brand">Emi DieNa “dRuMs”</a>
                 
                 <!-- ...and the COLLAPSE button -->
 
@@ -201,7 +259,7 @@
         
     </nav>
     
-    <div class="container individualcontainer" id="top-img-cont">
+    <div class="container" id="top-img-cont">
         
         <div class="row">
             <div class="col-md-12">
@@ -231,7 +289,7 @@
         
     </div>
     
-    <div class="container individualcontainer" id="aboutme">
+    <div class="container">
     
         <div class="row" id="aboutme">
             
@@ -241,36 +299,43 @@
                 <hr />
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce viverra hendrerit dui. Nulla sodales rutrum lacus a imperdiet. Etiam faucibus nunc eget nunc faucibus scelerisque. Donec lobortis rhoncus urna vel feugiat. Ut tellus odio, viverra eget vestibulum bibendum, placerat ut tortor. </p>
                 
-            <!--    
-            <div class="row">         
-                <div class="col-md-3 col-xs-3">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#cv">Resume</a></li>
+                    <li><a data-toggle="tab" href="#collab">Collaborations</a></li>
+                </ul>
 
-                    <h5>Music Curriculum</h5>
-                    <ul>
-                        <li>Tette</li>
-                        <li>Cazzo</li>
-                        <li>Culo</li>
-                        <li>Figa</li>
-                        <li>Merda</li>
-                    </ul>
-                
-                </div>    
-            
-                <div class="col-md-3 col-xs-3 pull-right">
+                <div class="tab-content">
+                    <div id="cv" class="tab-pane fade in active">
+                        <ul class="ul-about">
+                            <li>2014/now One Direction</li>
+                            <li>2013/now Tinguaro Locura</li>
+                            <li>2012/2013 - El quarto Latente Band</li>
+                            <li>1998/2001 - The Snots</li>
+                            <li>2014/now One Direction</li>
+                            <li>2013/now Tinguaro Locura</li>
+                            <li>2012/2013 - El quarto Latente Band</li>
+                            <li>1998/2001 - The Snots</li>
+                            <li>2014/now One Direction</li>
+                            <li>2013/now Tinguaro Locura</li>
+                            <li>2012/2013 - El quarto Latente Band</li>
+                            <li>1998/2001 - The Snots</li>
+                            <li>2014/now One Direction</li>
+                            <li>2013/now Tinguaro Locura</li>
+                            <li>2012/2013 - El quarto Latente Band</li>
+                            <li>1998/2001 - The Snots</li>
+                        </ul>
+                    </div>
+                    <div id="collab" class="tab-pane fade">
+                        <ul class="ul-about">
+                            <li>La casa del Placer - Lanzarote</li>
+                            <li>La fabrica - La Isleta</li>
+                            <li>Centro Cultural "La paja" - de Oliver el allemano</li>
+                            <li>Ajuntamiento de La Oliva</li>
+                            <li>Comune di Genova qualche cazzo di istituto sedicente culturale..</li>
+                        </ul>
+                    </div>
+                </div>
 
-                    <h5>Collaborations</h5>
-                    <ul>
-                        <li>Tette</li>
-                        <li>Cazzo</li>
-                        <li>Culo</li>
-                        <li>Figa</li>
-                        <li>Merda</li>
-                    </ul>
-
-                </div>     
-            </div>
-            -->
-                               
             </div>
             
             <div class="col-md-6 col-xs-12">
@@ -341,22 +406,26 @@
         
         <div class="row">
             
-            <div class="col-md-6 col-xs-12">
+            <div class="col-md-5 col-xs-12">
                 
-                <h2>Videos</h2>
-                <hr />            
+                <a href="https://www.youtube.com/user/eMidRumOfficial" target="_blank"><h2>Videos &nbsp;<img class="standard-icon" src="imgs/youtube_icon-64.png" /></h2></a>
+                
+                <hr />
 
-                <div class="embed-responsive embed-responsive-16by9">
+                <div class="embed-responsive embed-responsive-4by3">
                     <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/3DS268AXc_s?list=PLQlLGuoa9jFUlyb9Tc4tT-XdM0OdRFWH0" frameborder="0" allowfullscreen></iframe>
                 </div>               
             </div>
             
-            <div class="col-md-6 col-xs-12">
+            <div class="col-md-2" id="blankspace-div"></div>
+            
+            <div class="col-md-5 col-xs-12">
                 
-                <h2>Tunes</h2>
+                <a href="https://soundcloud.com/emidrum-diena" target="_blank"><h2>Tunes &nbsp;<img class="standard-icon" src="imgs/sound-Icon_64.png" /></h2></a>
+                
                 <hr />
                 
-                <div class="embed-responsive embed-responsive-16by9">
+                <div class="embed-responsive embed-responsive-4by3">
                     <iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/243523529&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
                 </div>               
             </div>
@@ -364,48 +433,83 @@
         </div>
             
         
-        <div class="row" id="contact">
-            
-            <div class="col-md-12">
-                
+        <div class="row" id="contact">          
+            <div class="col-md-12">    
                 <h2>Contact</h2>
                 <hr />
-                
-                <form method="post" class="col-md-6" id="contform">
-                    
-                    <h4 class="text-center">Send me a message!</h4>
-
-                    <div id="result-email"></div>                  
-                    
-                    <div class="form-group">
-                        <label for="receiver">From:</label>
-                        <input type="text" class="form-control" name="sender" id="sender" placeholder="email" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="subject">Subject:</label>
-                        <input type="text" class="form-control" name="subject" id="subject" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="msg">Your Message:</label>
-                        <textarea class="form-control" name="msg" id="msg" placeholder="Type here..." rows="8"></textarea>
-                    </div>
-
-                    <br />
-                    <br />
-
-                    <div class="form-group">
-                        <input class="form-control text-center btn btn-success btn-sm" name="submit_email" id="submit_email" type="button" value="SEND!">
-                    </div>
-                
-                </form>
-
             </div>
         </div>
 
-    </div>
 
+                <div class="col-md-5 col-xs-12" id="contform">
+                    <form method="post">
+
+                        <h4 class="text-center">Send me a message: </h4>
+
+                        <div id="result-email"></div>                  
+
+                        <div class="form-group">
+                            <label for="receiver">From:</label>
+                            <input type="text" class="form-control" name="sender" id="sender" placeholder="email" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <input type="text" class="form-control" name="subject" id="subject" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="msg">Your Message:</label>
+                            <textarea class="form-control" name="msg" id="msg" placeholder="Type here..." rows="8"></textarea>
+                        </div>
+
+                        <br />
+                        <br />
+
+                        <div class="form-group">
+                            <input class="form-control center-block btn btn-success btn-sm" name="submit_email" id="submit_email" type="button" value="SEND">
+                        </div>
+
+                    </form>
+                </div>
+        
+                <div class="col-md-1" id="blankspace-div"></div>
+                
+                <div class="col-md-6 col-xs-12 pull-right" id="link-box">
+                    
+                    <h4 class="text-center">Find me here: </h4>
+                    
+                    <div class="center-block text-center">
+                        <a href="https://www.youtube.com/user/eMidRumOfficial">
+                            <img src="imgs/Youtube_logo001.png" class="logo-images" />
+                        </a>
+                        <a href="https://soundcloud.com/emidrum-diena">
+                            <img src="imgs/Soundcloud-logo001.png" class="logo-images" />
+                        </a>
+                        <a href="https://plus.google.com/107558780089339983191/posts">
+                            <img src="imgs/Googleplus_logo01.png" class="logo-images"/>
+                        </a>
+                        
+                        <br />
+                        <br />                        
+                    </div>  
+                    
+                    <h4 class="text-center"><span class="glyphicon glyphicon-phone"></span> 605082093</h4>
+                                    
+                </div>
+
+    </div>
+    
+    <!--<nav class="navbar navbar-inverse" id="footer">   
+        <div class="container" id="footrow">
+            
+        <p class="navbar-text pull-left">Find me here: </p> 
+            <a class="pull-left" href="https://www.youtube.com/user/eMidRumOfficial"><img src="imgs/youtube_logo_small.jpg" /></a>
+            <a class="pull-left" href="https://soundcloud.com/emidrum-diena"><img src="imgs/soundcloud-logo (1).png"</a>
+            <a class="pull-left" href="https://plus.google.com/107558780089339983191/posts"><img src="imgs/Google_logo-small.png"</a>            
+        </div>       
+    </nav>
+    -->
       
 <script type="text/javascript">
 
@@ -457,5 +561,4 @@
    
 </body>
 </html>
-
 
