@@ -66,34 +66,13 @@
     
 <style type="text/css">
    
-    #top-img-cont{
-        overflow-x: hidden;
-        padding: 0;
-        width: 100%;     
-    }
-
-    #toppic{
-        margin: 0;
-        padding: 0;
-        margin-top: 50px;
-        width: 100%;
-        max-height: 700px;
-    }
-      
-    #sitemotto{
-        opacity: 0.1;
-        color: red;
-        position: relative;
-        top: -100px;
-    }
-    
-    h1{
+     h1{
         margin: 0;
         padding: 0;
         font-size: 3em;
     }
     
-    a {
+    a, a:visited {
         color: #0f90ef;
         text-decoration: none;
     }
@@ -101,6 +80,46 @@
     a:hover {
         color: #0476a0;
         text-decoration: none;
+    }
+    
+    a:focus{
+        outline: 0;
+        text-decoration: none;
+    }
+    
+    .margin-top{
+        margin-top: 50px;
+    }
+    
+    .margin-bot{
+        margin-bottom: 25px;
+    }
+    
+    .no-marginpadding{
+        margin: 0;
+        padding: 0;
+    }
+    
+    #top-img-cont{
+        overflow-x: hidden;
+        padding: 0;
+        width: 100%;     
+    }
+
+    #toppic{
+        margin: 50px 0 0 0;
+        padding: 0;
+        width: 100%;
+        max-height: 700px;
+    }
+      
+    #sitemotto{
+        opacity: 0;
+        font-family: Monotype MT, Helvetica Thin, Helvetica, sans-serif;
+        text-shadow: 2px 2px 0px rgba(0,0,0,0.1); 
+        color: #faca28;
+        position: relative;
+        top: -70px;
     }
     
     #datespan{
@@ -137,7 +156,17 @@
     .table-responsive{
         overflow-x: auto;
     }
-
+    
+    .tab-pane{
+        height: 250px;
+        background-color: whitesmoke;
+        overflow: scroll;
+    }
+    
+    .nav-tabs > .active > a, .nav-tabs > .active > a:hover{
+        outline:none;
+    }
+   
     .ul-about {
         list-style-type: none;
         margin: 20px 0 0 8px;
@@ -150,9 +179,8 @@
         
     }
     
-    .tab-pane{
-        height: 250px;
-        overflow: scroll;
+    .inline-h{
+        display: inline;
     }
     
     .standard-icon{
@@ -161,25 +189,14 @@
         margin: 0;
     }
     
-    #contform{ 
+    .contact-box{ 
         padding: 25px;
-        background-color: #eae9e8; 
+        background-color: #a7b3bc; 
         border-radius: 10px;
     }
     
     #submit_email{
         width: 35%;
-    }
-    
-    #link-box{
-        padding: 25px;
-        background-color: #a5a5a4; 
-        border-radius: 10px;
-    }
-    
-    .center-block{
-        height: 100%;
-        background-color: azure;
     }
        
     #footer{
@@ -197,8 +214,8 @@
         
         #sitemotto{font-size: 0.7em; top: -25px;}     
         #datespan{display: none;}        
-        #myCarousel{margin-top: 64px; max-height: 200px;}        
-        #toppic{max-height: 200px;}
+        #myCarousel{margin-top: 50px; max-height: 200px;}        
+        #toppic{max-height: 200px; margin-top: 50px;}
 	}
 
     @media (min-width: 481px) and (max-width: 767px) {
@@ -220,7 +237,6 @@
     
 </head>
     
-
 <body>
        
     <nav class="navbar navbar-default navbar-fixed-top "> 
@@ -250,6 +266,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#aboutme">About me</a></li>
                     <li><a href="#dates">Dates</a></li>                                
+                    <li><a href="#media">Media</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 
@@ -265,7 +282,7 @@
             <div class="col-md-12">
                 
                 <div class="panel panel-default" id="datespan">
-                    <h4 class="text-center">Dates <a href="#dates">(more info)</a></h4>
+                    <h4 class="text-center">Dates <a href="#dates">more info</a></h4>
                     <div class="panel-body">
                         <div class="table-responsive">
                             <table class="table table-condensed">
@@ -293,49 +310,49 @@
     
         <div class="row" id="aboutme">
             
-            <div class="col-md-6 col-xs-12">
-   
-                <h2>About me</h2>
-                <hr />
-                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce viverra hendrerit dui. Nulla sodales rutrum lacus a imperdiet. Etiam faucibus nunc eget nunc faucibus scelerisque. Donec lobortis rhoncus urna vel feugiat. Ut tellus odio, viverra eget vestibulum bibendum, placerat ut tortor. </p>
-                
-                <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#cv">Resume</a></li>
-                    <li><a data-toggle="tab" href="#collab">Collaborations</a></li>
-                </ul>
+            <div class="margin-top">
+                <div class="col-md-6 col-xs-12">
 
-                <div class="tab-content">
-                    <div id="cv" class="tab-pane fade in active">
-                        <ul class="ul-about">
-                            <li>2014/now One Direction</li>
-                            <li>2013/now Tinguaro Locura</li>
-                            <li>2012/2013 - El quarto Latente Band</li>
-                            <li>1998/2001 - The Snots</li>
-                            <li>2014/now One Direction</li>
-                            <li>2013/now Tinguaro Locura</li>
-                            <li>2012/2013 - El quarto Latente Band</li>
-                            <li>1998/2001 - The Snots</li>
-                            <li>2014/now One Direction</li>
-                            <li>2013/now Tinguaro Locura</li>
-                            <li>2012/2013 - El quarto Latente Band</li>
-                            <li>1998/2001 - The Snots</li>
-                            <li>2014/now One Direction</li>
-                            <li>2013/now Tinguaro Locura</li>
-                            <li>2012/2013 - El quarto Latente Band</li>
-                            <li>1998/2001 - The Snots</li>
-                        </ul>
-                    </div>
-                    <div id="collab" class="tab-pane fade">
-                        <ul class="ul-about">
-                            <li>La casa del Placer - Lanzarote</li>
-                            <li>La fabrica - La Isleta</li>
-                            <li>Centro Cultural "La paja" - de Oliver el allemano</li>
-                            <li>Ajuntamiento de La Oliva</li>
-                            <li>Comune di Genova qualche cazzo di istituto sedicente culturale..</li>
-                        </ul>
-                    </div>
-                </div>
+                    <h2 class="nudgedown">About me</h2>
+                    <hr />
+                    <p class="margin-bot"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce viverra hendrerit dui. Nulla sodales rutrum lacus a imperdiet. Etiam faucibus nunc eget nunc faucibus scelerisque. Donec lobortis rhoncus urna vel feugiat. Ut tellus odio, viverra eget vestibulum bibendum, placerat ut tortor. </p>
 
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#cv">Resume</a></li>
+                        <li><a data-toggle="tab" href="#collab">Collaborations</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="cv" class="tab-pane fade in active">
+                            <ul class="ul-about">
+                                <li>2014/now One Direction</li>
+                                <li>2013/now Tinguaro Locura</li>
+                                <li>2012/2013 - El quarto Latente Band</li>
+                                <li>1998/2001 - The Snots</li>
+                                <li>2014/now One Direction</li>
+                                <li>2013/now Tinguaro Locura</li>
+                                <li>2012/2013 - El quarto Latente Band</li>
+                                <li>1998/2001 - The Snots</li>
+                                <li>2014/now One Direction</li>
+                                <li>2013/now Tinguaro Locura</li>
+                                <li>2012/2013 - El quarto Latente Band</li>
+                                <li>1998/2001 - The Snots</li>
+                                <li>2014/now One Direction</li>
+                                <li>2013/now Tinguaro Locura</li>
+                                <li>2012/2013 - El quarto Latente Band</li>
+                                <li>1998/2001 - The Snots</li>
+                            </ul>
+                        </div>
+                        <div id="collab" class="tab-pane fade">
+                            <ul class="ul-about">
+                                <li>La casa del Placer - Lanzarote</li>
+                                <li>La fabrica - La Isleta</li>
+                                <li>Centro Cultural "La paja" - de Oliver el allemano</li>
+                                <li>Ajuntamiento de La Oliva</li>
+                                <li>Comune di Genova qualche cazzo di istituto sedicente culturale..</li>
+                            </ul>
+                        </div>
+                    </div>
             </div>
             
             <div class="col-md-6 col-xs-12">
@@ -381,11 +398,12 @@
             
             </div>            
         </div>
+        </div>
         
         <div class="row" id="dates">        
-            <div class="col-md-12">
+            <div class="col-md-12 margin-top">
                 
-                <h2>Dates</h2>
+                <h2 class="nudgedown">Dates</h2>
                 <hr />
                 
                 <div class="table-responsive">
@@ -404,44 +422,46 @@
             </div>                    
         </div>
         
-        <div class="row">
+        <div class="row" id="media">
             
-            <div class="col-md-5 col-xs-12">
-                
-                <a href="https://www.youtube.com/user/eMidRumOfficial" target="_blank"><h2>Videos &nbsp;<img class="standard-icon" src="imgs/youtube_icon-64.png" /></h2></a>
-                
-                <hr />
+            <div class="margin-top">
+                <div class="col-md-5 col-xs-12">
 
-                <div class="embed-responsive embed-responsive-4by3">
-                    <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/3DS268AXc_s?list=PLQlLGuoa9jFUlyb9Tc4tT-XdM0OdRFWH0" frameborder="0" allowfullscreen></iframe>
-                </div>               
-            </div>
-            
-            <div class="col-md-2" id="blankspace-div"></div>
-            
-            <div class="col-md-5 col-xs-12">
-                
-                <a href="https://soundcloud.com/emidrum-diena" target="_blank"><h2>Tunes &nbsp;<img class="standard-icon" src="imgs/sound-Icon_64.png" /></h2></a>
-                
-                <hr />
-                
-                <div class="embed-responsive embed-responsive-4by3">
-                    <iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/243523529&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
-                </div>               
+                    <a class="nudgeleft" href="https://www.youtube.com/user/eMidRumOfficial" target="_blank"><h2 class="inline-h">Videos &nbsp;<img class="standard-icon" src="imgs/youtube_icon-64.png" /></h2></a>
+
+                    <hr />
+
+                    <div class="embed-responsive embed-responsive-4by3 margin-bot">
+                        <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/3DS268AXc_s?list=PLQlLGuoa9jFUlyb9Tc4tT-XdM0OdRFWH0" frameborder="0" allowfullscreen></iframe>
+                    </div>               
+                </div>
+
+                <div class="col-md-2" id="blankspace-div"></div>
+
+                <div class="col-md-5 col-xs-12">
+
+                    <a class="nudgeleft" href="https://soundcloud.com/emidrum-diena" target="_blank"><h2 class="inline-h">Tunes &nbsp;<img class="standard-icon" src="imgs/sound-Icon_64.png" /></h2></a>
+
+                    <hr />
+
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/243523529&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+                    </div>               
+                </div>
             </div>
             
         </div>
             
         
         <div class="row" id="contact">          
-            <div class="col-md-12">    
-                <h2>Contact</h2>
+            <div class="col-md-12 margin-top">    
+                <h2 class="nudgedown">Contact</h2>
                 <hr />
             </div>
         </div>
 
 
-                <div class="col-md-5 col-xs-12" id="contform">
+                <div class="col-md-5 col-xs-12 margin-bot contact-box">
                     <form method="post">
 
                         <h4 class="text-center">Send me a message: </h4>
@@ -475,7 +495,7 @@
         
                 <div class="col-md-1" id="blankspace-div"></div>
                 
-                <div class="col-md-6 col-xs-12 pull-right" id="link-box">
+                <div class="col-md-6 col-xs-12 pull-right contact-box">
                     
                     <h4 class="text-center">Find me here: </h4>
                     
@@ -499,18 +519,7 @@
                 </div>
 
     </div>
-    
-    <!--<nav class="navbar navbar-inverse" id="footer">   
-        <div class="container" id="footrow">
-            
-        <p class="navbar-text pull-left">Find me here: </p> 
-            <a class="pull-left" href="https://www.youtube.com/user/eMidRumOfficial"><img src="imgs/youtube_logo_small.jpg" /></a>
-            <a class="pull-left" href="https://soundcloud.com/emidrum-diena"><img src="imgs/soundcloud-logo (1).png"</a>
-            <a class="pull-left" href="https://plus.google.com/107558780089339983191/posts"><img src="imgs/Google_logo-small.png"</a>            
-        </div>       
-    </nav>
-    -->
-      
+  
 <script type="text/javascript">
 
     function resizeContHeight() {         
@@ -525,13 +534,58 @@
         var scrollTop = $(window).scrollTop();
         var height = $(window).height();
 
-        $("#toppic, #datespan").css({
-            "opacity" : ((height - scrollTop) / height)
-        });
+        $("#toppic, #datespan").css({"opacity" : ((height - (scrollTop * 1.2)) / height)});
         
         $("#sitemotto").css({"opacity" : (scrollTop / height)});
 
     });
+    
+    var $bgToColor;
+    var colorFrom;
+    var colorTo;
+    
+    $(".nudgedown").mouseenter(function(){
+                 
+        switch ($(this).text()){
+            case "About me":
+                $bgToColor = $(this).siblings(".tab-content").children(".tab-pane");
+                colorFrom = $bgToColor.css("background-color");
+                colorTo = "azure";
+                break;
+            case "Dates":
+                $bgToColor = $(this).siblings(".table-responsive");
+                colorFrom = $bgToColor.css("background-color");
+                colorTo = "beige";
+                break;
+            case "Contact":
+                $bgToColor = $(".contact-box");
+                colorFrom = $bgToColor.css("background-color");
+                colorTo = "#87c8f8";              
+        }
+        
+        $(this).animate({marginBottom: "-15px"});       
+        $bgToColor.css("background-color", colorTo);     
+        $(this).siblings("hr").fadeTo(400, 0);
+    });
+        
+    $(".nudgedown").mouseleave(function(){     
+        $(this).animate({marginBottom: 0});       
+        $(this).siblings("hr").fadeTo(400, 1);
+        $bgToColor.css("background-color", colorFrom);
+    });        
+        
+    $(".nudgeleft").hover(function() {
+		$(this).find("img").animate({marginLeft: "15px"});
+        }, function() {
+            $(this).find("img").animate({marginLeft: 0});
+	});
+    
+    $(".logo-images").hover(function() {
+		$(this).animate({paddingTop: "5px"});
+        }, function() {
+            $(this).animate({paddingTop: 0});
+	});
+    
 
     $(function(){
         $('.carousel').carousel({
@@ -561,4 +615,5 @@
    
 </body>
 </html>
+
 
