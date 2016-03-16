@@ -52,6 +52,9 @@
     <script src="js/bootstrap.min.js"></script>
     -->
     
+    <!-- WayPoints library -->
+    <script src="jquery.waypoints.min.js"></script>
+    
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- Bootstrap CSS local link
@@ -140,6 +143,18 @@
     #datespan a {
         font-size: .7em;
     }
+    
+    #featuredVideo{
+        position: absolute;
+        bottom: 15%;
+        left: 5%;       
+    }
+   
+    .drumstck{
+        height: 5px;
+        width: auto;
+        margin-left: 80px;
+    }
  
     #myCarousel{
         max-width: 500px;
@@ -150,9 +165,6 @@
         margin-top: 100px;
     }
 
-    #myCarousel img{
-    }
-    
     .table-responsive{
         overflow-x: auto;
     }
@@ -191,7 +203,7 @@
     
     .contact-box{ 
         padding: 25px;
-        background-color: #a7b3bc; 
+        background-color: #e3ecf0; 
         border-radius: 10px;
     }
     
@@ -237,7 +249,7 @@
     
 </head>
     
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
        
     <nav class="navbar navbar-default navbar-fixed-top "> 
     
@@ -247,7 +259,7 @@
                 
                 <!-- The header contains the logo (BRAND)... -->
                 
-                <a href="" class="navbar-brand">Emi DieNa “dRuMs”</a>
+                <a href="" class="navbar-brand">Emi “dRuMs”</a>
                 
                 <!-- ...and the COLLAPSE button -->
 
@@ -298,24 +310,35 @@
                         </div>
                     </div>
                 
+                <!-- Featured video -OR- tune
+                <div class="col-md-3" id="featuredVideo">   
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/196480677&amp;color=ff9900&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+                    </div>
+                </div>
+                -->
+                
                 <img class="img-responsive" src="imgs/EmiStudio.png" id="toppic"/>
                 <h1 class="text-center" id="sitemotto">&quot;El ritmo es la base de la vida....&quot;</h1>
                 
             </div>
+            
+    
         </div>    
         
     </div>
     
     <div class="container">
     
-        <div class="row" id="aboutme">
+        <div class="row nudgedown" id="aboutme">
             
             <div class="margin-top">
                 <div class="col-md-6 col-xs-12">
 
-                    <h2 class="nudgedown">About me</h2>
+                    <h2>About me<img class="drumstck" src="imgs/drumstick-001.png" /></h2>
                     <hr />
-                    <p class="margin-bot"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce viverra hendrerit dui. Nulla sodales rutrum lacus a imperdiet. Etiam faucibus nunc eget nunc faucibus scelerisque. Donec lobortis rhoncus urna vel feugiat. Ut tellus odio, viverra eget vestibulum bibendum, placerat ut tortor. </p>
+                    <p class="margin-bot"> La batteria è la mia passione da più di 20 anni ormai. Nel corso della mia carriera da musicista, ho conseguito diplomi e riconoscenze presso diversi istituti. Il mio tempo si divide  tra tour locali e internazionali con diverse band e produzione in studio.
+Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
 
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#cv">Resume</a></li>
@@ -348,8 +371,8 @@
                                 <li>La casa del Placer - Lanzarote</li>
                                 <li>La fabrica - La Isleta</li>
                                 <li>Centro Cultural "La paja" - de Oliver el allemano</li>
-                                <li>Ajuntamiento de La Oliva</li>
-                                <li>Comune di Genova qualche cazzo di istituto sedicente culturale..</li>
+                                <li>Ajuntamiento de La Oliva - Polo de artes "Masanobu Sato"</li>
+                                <li>Comune di Genova - qualche cazzo di istituto sedicente culturale</li>
                             </ul>
                         </div>
                     </div>
@@ -400,10 +423,10 @@
         </div>
         </div>
         
-        <div class="row" id="dates">        
+        <div class="row nudgedown" id="dates">        
             <div class="col-md-12 margin-top">
                 
-                <h2 class="nudgedown">Dates</h2>
+                <h2>Dates<img class="drumstck" src="imgs/drumstick-001.png" /></h2>
                 <hr />
                 
                 <div class="table-responsive">
@@ -412,7 +435,9 @@
                           <tr>
                             <th>When</th>
                             <th>Where</th>
-                            <th>Gates/Price</th>
+                            <th>Gates</th>
+                            <th>Price</th>
+                            <th>Info</th>
                           </tr>
                         </thead>
                         <tbody><?php echo $datesResult; ?></tbody>
@@ -452,76 +477,77 @@
             
         </div>
             
-        
-        <div class="row" id="contact">          
-            <div class="col-md-12 margin-top">    
-                <h2 class="nudgedown">Contact</h2>
-                <hr />
+        <div class="nudgedown">
+            <div class="row" id="contact">  
+
+                <div class="col-md-12 margin-top">    
+                    <h2>Contact<img class="drumstck" src="imgs/drumstick-001.png" /></h2>
+                    <hr />
+                </div>
+            </div>
+
+            <div class="col-md-5 col-xs-12 margin-bot contact-box">
+                <form method="post">
+
+                    <h4 class="text-center">Send me a message: </h4>
+
+                    <div id="result-email"></div>                  
+
+                    <div class="form-group">
+                        <label for="receiver">From:</label>
+                        <input type="text" class="form-control" name="sender" id="sender" placeholder="email" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject:</label>
+                        <input type="text" class="form-control" name="subject" id="subject" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="msg">Your Message:</label>
+                        <textarea class="form-control" name="msg" id="msg" placeholder="Type here..." rows="8"></textarea>
+                    </div>
+
+                    <br />
+                    <br />
+
+                    <div class="form-group">
+                        <input class="form-control center-block btn btn-success btn-sm" name="submit_email" id="submit_email" type="button" value="SEND">
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="col-md-1" id="blankspace-div"></div>
+
+            <div class="col-md-6 col-xs-12 pull-right contact-box">
+
+                <h4 class="text-center">Find me here: </h4>
+
+                <div class="center-block text-center">
+                    <a href="https://www.youtube.com/user/eMidRumOfficial">
+                        <img src="imgs/Youtube_logo001.png" class="logo-images" />
+                    </a>
+                    <a href="https://soundcloud.com/emidrum-diena">
+                        <img src="imgs/Soundcloud-logo001.png" class="logo-images" />
+                    </a>
+                    <a href="https://plus.google.com/107558780089339983191/posts">
+                        <img src="imgs/Googleplus_logo01.png" class="logo-images"/>
+                    </a>
+
+                    <br />
+                    <br />                        
+                </div>  
+
+                <h4 class="text-center"><span class="glyphicon glyphicon-phone"></span> 605082093</h4>
+
             </div>
         </div>
-
-
-                <div class="col-md-5 col-xs-12 margin-bot contact-box">
-                    <form method="post">
-
-                        <h4 class="text-center">Send me a message: </h4>
-
-                        <div id="result-email"></div>                  
-
-                        <div class="form-group">
-                            <label for="receiver">From:</label>
-                            <input type="text" class="form-control" name="sender" id="sender" placeholder="email" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="subject">Subject:</label>
-                            <input type="text" class="form-control" name="subject" id="subject" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="msg">Your Message:</label>
-                            <textarea class="form-control" name="msg" id="msg" placeholder="Type here..." rows="8"></textarea>
-                        </div>
-
-                        <br />
-                        <br />
-
-                        <div class="form-group">
-                            <input class="form-control center-block btn btn-success btn-sm" name="submit_email" id="submit_email" type="button" value="SEND">
-                        </div>
-
-                    </form>
-                </div>
         
-                <div class="col-md-1" id="blankspace-div"></div>
-                
-                <div class="col-md-6 col-xs-12 pull-right contact-box">
-                    
-                    <h4 class="text-center">Find me here: </h4>
-                    
-                    <div class="center-block text-center">
-                        <a href="https://www.youtube.com/user/eMidRumOfficial">
-                            <img src="imgs/Youtube_logo001.png" class="logo-images" />
-                        </a>
-                        <a href="https://soundcloud.com/emidrum-diena">
-                            <img src="imgs/Soundcloud-logo001.png" class="logo-images" />
-                        </a>
-                        <a href="https://plus.google.com/107558780089339983191/posts">
-                            <img src="imgs/Googleplus_logo01.png" class="logo-images"/>
-                        </a>
-                        
-                        <br />
-                        <br />                        
-                    </div>  
-                    
-                    <h4 class="text-center"><span class="glyphicon glyphicon-phone"></span> 605082093</h4>
-                                    
-                </div>
-
     </div>
   
 <script type="text/javascript">
-
+  
     function resizeContHeight() {         
         $(".individualcontainer").css("min-height", $(window).height());            
     }
@@ -534,58 +560,131 @@
         var scrollTop = $(window).scrollTop();
         var height = $(window).height();
 
-        $("#toppic, #datespan").css({"opacity" : ((height - (scrollTop * 1.2)) / height)});
+        $("#toppic, #datespan, #featuredVideo").css({"opacity" : ((height - (scrollTop * 1.2)) / height)});
         
         $("#sitemotto").css({"opacity" : (scrollTop / height)});
 
     });
     
+    var localHeaderText;
+    var $localHeader;
     var $bgToColor;
     var colorFrom;
     var colorTo;
     
-    $(".nudgedown").mouseenter(function(){
-                 
-        switch ($(this).text()){
+    function onSectionTrigger(localHeaderText) {
+        
+        $localHeader = $("h2:contains(" + localHeaderText + ")");
+        
+        switch (localHeaderText){
             case "About me":
-                $bgToColor = $(this).siblings(".tab-content").children(".tab-pane");
-                colorFrom = $bgToColor.css("background-color");
-                colorTo = "azure";
+                $bgToColor = $localHeader.siblings(".tab-content").children(".tab-pane");
+                colorFrom = "whitesmoke";
+                colorTo = "#edfdfa";
                 break;
             case "Dates":
-                $bgToColor = $(this).siblings(".table-responsive");
-                colorFrom = $bgToColor.css("background-color");
+                $bgToColor = $localHeader.siblings(".table-responsive");
+                colorFrom = "white";
                 colorTo = "beige";
                 break;
             case "Contact":
                 $bgToColor = $(".contact-box");
-                colorFrom = $bgToColor.css("background-color");
-                colorTo = "#87c8f8";              
+                colorFrom = "#e3ecf0";
+                colorTo = "#b5d4ea";              
         }
         
-        $(this).animate({marginBottom: "-15px"});       
-        $bgToColor.css("background-color", colorTo);     
-        $(this).siblings("hr").fadeTo(400, 0);
+        $localHeader.animate({marginBottom: "-15px"});       
+        $localHeader.children("img").animate({marginLeft: "15px"});
+        $localHeader.siblings("hr").fadeTo(400, 0);
+        $bgToColor.css("background-color", colorTo);
+    }
+    
+    function onSectionRelease(localHeaderText) {
+        
+        if($localHeader){        
+            $localHeader.animate({marginBottom: 0});
+            $localHeader.children("img").animate({marginLeft: "80px"});
+            $localHeader.siblings("hr").fadeTo(400, 1);
+            $bgToColor.css("background-color", colorFrom);
+        }
+    }
+    
+    /* Activate Section animation via Scrollspy
+    $("body").on('activate.bs.scrollspy', function () {
+        
+        currentRowId = $(this).find("li.active a").attr("href");
+        
+        localHeaderText = $(currentRowId).find("h2").text();
+                      
+        onSectionTrigger(localHeaderText);            
+    });
+    */
+    
+    //deploying 4 waypoints above and below section h2s.......
+    $(".nudgedown").waypoint({
+            handler: function(direction) {
+            var el=$(this).get(0).element;
+            onSectionRelease()
+            }, 
+            offset: 50
+	});
+    
+    $(".nudgedown").waypoint({
+            handler: function(direction) {
+            var el=$(this).get(0).element;
+            localHeaderText = $(el).find("h2").text();       
+            onSectionTrigger(localHeaderText);
+            }, 
+            offset: 25
+	});
+    
+    $(".nudgedown").waypoint({
+            handler: function(direction) {
+            var el=$(this).get(0).element;
+            localHeaderText = $(el).find("h2").text();       
+            onSectionTrigger(localHeaderText);
+            }, 
+            offset: -25
+	});
+    
+    $(".nudgedown").waypoint({
+            handler: function(direction) {
+            var el=$(this).get(0).element;
+            onSectionRelease()
+            }, 
+            offset: -100
+	});
+  
+    $(".nudgedown").mouseenter(function(){
+        
+        localHeaderText = $(this).find("h2").text();       
+        onSectionTrigger(localHeaderText);
+    
     });
         
-    $(".nudgedown").mouseleave(function(){     
-        $(this).animate({marginBottom: 0});       
-        $(this).siblings("hr").fadeTo(400, 1);
-        $bgToColor.css("background-color", colorFrom);
+    $(".nudgedown").mouseleave(function(){
+        onSectionRelease();         
     });        
         
-    $(".nudgeleft").hover(function() {
+    $(".nudgeleft").hover(function() { 
+        
 		$(this).find("img").animate({marginLeft: "15px"});
-        }, function() {
+        $(this).next("hr").fadeTo(400, 0);
+        $(this).nextAll().slice(1, 2).animate({marginTop: "-15px"});       
+     
+        }, function(){
             $(this).find("img").animate({marginLeft: 0});
-	});
+            $(this).next("hr").fadeTo(400, 1);
+            $(this).nextAll().slice(1, 2).animate({marginTop: 0});       
+    });
+
+
     
     $(".logo-images").hover(function() {
 		$(this).animate({paddingTop: "5px"});
         }, function() {
             $(this).animate({paddingTop: 0});
-	});
-    
+	});    
 
     $(function(){
         $('.carousel').carousel({
