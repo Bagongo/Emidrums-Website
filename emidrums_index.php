@@ -2,23 +2,37 @@
 
     include("connection.php");
 
-    $tourDatesQuery = "SELECT * FROM touring ORDER BY `dates` DESC LIMIT 10";
+    $tourDatesQuery = "SELECT * FROM `touring` ORDER BY `dates` DESC LIMIT 10";
     $tourDates = mysqli_query($connection, $tourDatesQuery);
     $datesResult;
     $datesResultPanel;
 
-    while($row = mysqli_fetch_array($tourDates, MYSQLI_ASSOC)) 
+    while($row1 = mysqli_fetch_array($tourDates, MYSQLI_ASSOC)) 
     {
         $datesResult .= "<tr>
-        <td>".$row['dates']."</td>
-        <td>".$row['places']."</td>
-        <td>".$row['info']."</td>
+        <td>".$row1['dates']."</td>
+        <td>".$row1['places']."</td>
+        <td>".$row1['time']."</td>
+        <td>".$row1['price']."</td>
+        <td>".$row1['info']."</td>       
         </tr>";
         
         $datesResultPanel .= "<tr>
-        <td>".$row['dates']."</td>
-        <td>".$row['places']."</td>
+        <td>".$row1['dates']."</td>
+        <td>".$row1['places']."</td>
         </tr>";
+    }
+
+    $picLinksQuery = "SELECT `link` FROM `piclinks` ORDER by `uploaddate` DESC LIMIT 4";
+    $picLinks = mysqli_query($connection, $picLinksQuery);
+    $carouselItems;
+    $altPic = "imgs/pic01.jpg";
+
+    while($row2 = mysqli_fetch_array($picLinks, MYSQLI_ASSOC))
+    {
+        $carouselItems .= "<div class='item'>
+        <img src='".$row2['link']."' alt='".$altPic."'>
+        </div>";        
     }
 
 ?>
@@ -70,8 +84,6 @@
 <style type="text/css">
    
      h1{
-        margin: 0;
-        padding: 0;
         font-size: 3em;
     }
     
@@ -105,20 +117,18 @@
     
     #top-img-cont{
         overflow-x: hidden;
-        padding: 0;
         width: 100%;     
     }
 
     #toppic{
         margin: 50px 0 0 0;
-        padding: 0;
         width: 100%;
         max-height: 700px;
     }
       
     #sitemotto{
         opacity: 0;
-        font-family: Monotype MT, Helvetica Thin, Helvetica, sans-serif;
+        font-family: Helvetica, sans-serif;
         text-shadow: 2px 2px 0px rgba(0,0,0,0.1); 
         color: #faca28;
         position: relative;
@@ -254,42 +264,31 @@
     <nav class="navbar navbar-default navbar-fixed-top "> 
     
         <div class="container">
-        
-            <div class="navbar-header">
-                
-                <!-- The header contains the logo (BRAND)... -->
-                
+            
+            <div class="navbar-header">                               
                 <a href="" class="navbar-brand">Emi “dRuMs”</a>
                 
-                <!-- ...and the COLLAPSE button -->
-
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                            
+                </button>                          
             </div>
-            
-            <!-- Here are the collapsable objects --> 
-            
-            <div class="collapse navbar-collapse" id="navbar">
-                
+                        
+            <div class="collapse navbar-collapse" id="navbar01">              
                 <ul class="nav navbar-nav">
                     <li><a href="#aboutme">About me</a></li>
                     <li><a href="#dates">Dates</a></li>                                
                     <li><a href="#media">Media</a></li>
                     <li><a href="#contact">Contact</a></li>
-                </ul>
-                
+                </ul>                
             </div>
             
         </div>
         
     </nav>
     
-    <div class="container" id="top-img-cont">
-        
+    <div class="container no-marginpadding" id="top-img-cont">
         <div class="row">
             <div class="col-md-12">
                 
@@ -310,76 +309,73 @@
                         </div>
                     </div>
                 
-                <!-- Featured video -OR- tune
-                <div class="col-md-3" id="featuredVideo">   
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/196480677&amp;color=ff9900&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+                    <!-- Featured video -OR- tune
+                    <div class="col-md-3" id="featuredVideo">   
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/196480677&amp;color=ff9900&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+                        </div>
                     </div>
-                </div>
-                -->
+                    -->
                 
                 <img class="img-responsive" src="imgs/EmiStudio.png" id="toppic"/>
-                <h1 class="text-center" id="sitemotto">&quot;El ritmo es la base de la vida....&quot;</h1>
+                <h1 class="text-center no-marginpadding" id="sitemotto">&quot;El ritmo es la base de la vida....&quot;</h1>
                 
-            </div>
-            
-    
-        </div>    
-        
+            </div>    
+        </div>        
     </div>
     
-    <div class="container">
-    
+    <div class="container"> 
+        
         <div class="row nudgedown" id="aboutme">
             
-            <div class="margin-top">
-                <div class="col-md-6 col-xs-12">
-
-                    <h2>About me<img class="drumstck" src="imgs/drumstick-001.png" /></h2>
-                    <hr />
-                    <p class="margin-bot"> La batteria è la mia passione da più di 20 anni ormai. Nel corso della mia carriera da musicista, ho conseguito diplomi e riconoscenze presso diversi istituti. Il mio tempo si divide  tra tour locali e internazionali con diverse band e produzione in studio.
+            <div class="col-md-6 col-xs-12 margin-top">
+                
+                <h2>About me<img class="drumstck" src="imgs/drumstick-001.png" /></h2>
+                <hr />
+                <p class="margin-bot"> La batteria è la mia passione da più di 20 anni ormai. Nel corso della mia carriera da musicista, ho conseguito diplomi e riconoscenze presso diversi istituti. Il mio tempo si divide  tra tour locali e internazionali con diverse band e produzione in studio.
 Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
 
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#cv">Resume</a></li>
-                        <li><a data-toggle="tab" href="#collab">Collaborations</a></li>
-                    </ul>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#cv">Resume</a></li>
+                    <li><a data-toggle="tab" href="#collab">Collaborations</a></li>
+                </ul>
 
-                    <div class="tab-content">
-                        <div id="cv" class="tab-pane fade in active">
-                            <ul class="ul-about">
-                                <li>2014/now One Direction</li>
-                                <li>2013/now Tinguaro Locura</li>
-                                <li>2012/2013 - El quarto Latente Band</li>
-                                <li>1998/2001 - The Snots</li>
-                                <li>2014/now One Direction</li>
-                                <li>2013/now Tinguaro Locura</li>
-                                <li>2012/2013 - El quarto Latente Band</li>
-                                <li>1998/2001 - The Snots</li>
-                                <li>2014/now One Direction</li>
-                                <li>2013/now Tinguaro Locura</li>
-                                <li>2012/2013 - El quarto Latente Band</li>
-                                <li>1998/2001 - The Snots</li>
-                                <li>2014/now One Direction</li>
-                                <li>2013/now Tinguaro Locura</li>
-                                <li>2012/2013 - El quarto Latente Band</li>
-                                <li>1998/2001 - The Snots</li>
-                            </ul>
-                        </div>
-                        <div id="collab" class="tab-pane fade">
-                            <ul class="ul-about">
-                                <li>La casa del Placer - Lanzarote</li>
-                                <li>La fabrica - La Isleta</li>
-                                <li>Centro Cultural "La paja" - de Oliver el allemano</li>
-                                <li>Ajuntamiento de La Oliva - Polo de artes "Masanobu Sato"</li>
-                                <li>Comune di Genova - qualche cazzo di istituto sedicente culturale</li>
-                            </ul>
-                        </div>
+                <div class="tab-content">
+                    <div id="cv" class="tab-pane fade in active">
+                        <ul class="ul-about">
+                            <li>2014/now One Direction</li>
+                            <li>2013/now Tinguaro Locura</li>
+                            <li>2012/2013 - El quarto Latente Band</li>
+                            <li>1998/2001 - The Snots</li>
+                            <li>2014/now One Direction</li>
+                            <li>2013/now Tinguaro Locura</li>
+                            <li>2012/2013 - El quarto Latente Band</li>
+                            <li>1998/2001 - The Snots</li>
+                            <li>2014/now One Direction</li>
+                            <li>2013/now Tinguaro Locura</li>
+                            <li>2012/2013 - El quarto Latente Band</li>
+                            <li>1998/2001 - The Snots</li>
+                            <li>2014/now One Direction</li>
+                            <li>2013/now Tinguaro Locura</li>
+                            <li>2012/2013 - El quarto Latente Band</li>
+                            <li>1998/2001 - The Snots</li>
+                        </ul>
                     </div>
+                    <div id="collab" class="tab-pane fade">
+                        <ul class="ul-about">
+                            <li>La casa del Placer - Lanzarote</li>
+                            <li>La fabrica - La Isleta</li>
+                            <li>Centro Cultural "La paja" - de Oliver el allemano</li>
+                            <li>Ajuntamiento de La Oliva - Polo de artes "Masanobu Sato"</li>
+                            <li>Comune di Genova - qualche cazzo di istituto sedicente culturale</li>
+                        </ul>
+                    </div>
+                </div>
+                
             </div>
-            
-            <div class="col-md-6 col-xs-12">
-            
+
+        <div class="col-md-6 col-xs-12 margin-top">
+
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                   <!-- Indicators -->
                 <ol class="carousel-indicators">
@@ -390,22 +386,12 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
                 </ol>
 
                 <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
+                <div class="carousel-inner" role="listbox">               
                     <div class="item active">
-                    <img src="imgs/pic01.jpg" alt="Chania">
+                    <img src="imgs/pic01.jpg">
                     </div>
-
-                <div class="item">
-                    <img src="https://lh4.googleusercontent.com/-uWxlpUVDPkw/VnxAiJFm6gI/AAAAAAAABvU/YMFzOC-TkXA/w1720-h1290-no/15%2B-%2B1" alt="Chania">
-                </div>
-
-                <div class="item">
-                    <img src="imgs/pic04.jpg" alt="Flower">
-                </div>
-
-                <div class="item">
-                    <img src="imgs/pic03.jpg" alt="Flower">
-                </div>
+                    
+                    <?php echo $carouselItems; ?>                    
                 </div>
 
                 <!-- Left and right controls -->
@@ -421,7 +407,6 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
             
             </div>            
         </div>
-        </div>
         
         <div class="row nudgedown" id="dates">        
             <div class="col-md-12 margin-top">
@@ -436,7 +421,7 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
                             <th>When</th>
                             <th>Where</th>
                             <th>Gates</th>
-                            <th>Price</th>
+                            <th>Time</th>
                             <th>Info</th>
                           </tr>
                         </thead>
@@ -549,13 +534,13 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
 <script type="text/javascript">
   
     function resizeContHeight() {         
-        $(".individualcontainer").css("min-height", $(window).height());            
+        $(".container").css("min-height", $(window).height());            
     }
 
     //resizeContHeight();
     //$(window).resize(resizeContHeight());  
 
-    $(window).scroll(function () {
+    $(window).scroll(function() {
 
         var scrollTop = $(window).scrollTop();
         var height = $(window).height();
@@ -563,6 +548,24 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
         $("#toppic, #datespan, #featuredVideo").css({"opacity" : ((height - (scrollTop * 1.2)) / height)});
         
         $("#sitemotto").css({"opacity" : (scrollTop / height)});
+
+    });
+    
+    $(".nav li a[href^='#']").on('click', function(event) {
+
+        event.preventDefault();
+        
+        // store hash
+        var hash = this.hash;
+
+        // animate
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, 400, function(){
+        // when done, add hash to url
+        // (default click behaviour)
+        window.location.hash = hash;
+        });
 
     });
     
@@ -593,23 +596,23 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
                 colorTo = "#b5d4ea";              
         }
         
-        $localHeader.animate({marginBottom: "-15px"});       
-        $localHeader.children("img").animate({marginLeft: "15px"});
-        $localHeader.siblings("hr").fadeTo(400, 0);
+        $localHeader.stop().animate({marginBottom: "-15px"});       
+        $localHeader.children("img").stop().animate({marginLeft: "15px"});
+        $localHeader.siblings("hr").stop().fadeTo(400, 0);
         $bgToColor.css("background-color", colorTo);
     }
     
     function onSectionRelease(localHeaderText) {
         
         if($localHeader){        
-            $localHeader.animate({marginBottom: 0});
-            $localHeader.children("img").animate({marginLeft: "80px"});
-            $localHeader.siblings("hr").fadeTo(400, 1);
+            $localHeader.stop().animate({marginBottom: 0});
+            $localHeader.children("img").stop().animate({marginLeft: "80px"});
+            $localHeader.siblings("hr").stop().fadeTo(400, 1);
             $bgToColor.css("background-color", colorFrom);
         }
     }
     
-    /* Activate Section animation via Scrollspy
+    /* Activate section animation via Scrollspy
     $("body").on('activate.bs.scrollspy', function () {
         
         currentRowId = $(this).find("li.active a").attr("href");
@@ -652,8 +655,8 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
             var el=$(this).get(0).element;
             onSectionRelease()
             }, 
-            offset: -100
-	});
+            offset: -50
+	});    
   
     $(".nudgedown").mouseenter(function(){
         
@@ -667,15 +670,16 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
     });        
         
     $(".nudgeleft").hover(function() { 
-        
-		$(this).find("img").animate({marginLeft: "15px"});
-        $(this).next("hr").fadeTo(400, 0);
-        $(this).nextAll().slice(1, 2).animate({marginTop: "-15px"});       
+                
+		$(this).find("img").stop().animate({marginLeft: "15px"});
+        $(this).next("hr").stop().fadeTo(400, 0);
+        $(this).nextAll().slice(1, 2).stop().animate({marginTop: "-15px"});       
      
         }, function(){
-            $(this).find("img").animate({marginLeft: 0});
-            $(this).next("hr").fadeTo(400, 1);
-            $(this).nextAll().slice(1, 2).animate({marginTop: 0});       
+
+            $(this).find("img").stop().animate({marginLeft: 0});
+            $(this).next("hr").stop().fadeTo(400, 1);
+            $(this).nextAll().slice(1, 2).stop().animate({marginTop: 0});       
     });
 
 
@@ -709,8 +713,7 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
     });
             
     </script>
-    
-    
+        
    
 </body>
 </html>
