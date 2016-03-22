@@ -4,6 +4,32 @@
 
     include("connection.php");
 
+    echo $_GET["pictureID"];
+    
+    $query = "SELECT * FROM `piclinks` ORDER BY `uploaddate` DESC "; 
+    $result = mysqli_query($connection, $query);
+
+    $cols = 4;
+    $outputPics = "<table>\n";
+    $cell_count = 1;
+
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) 
+    {
+        if ($cell_count == 1)
+            $outputPics .= "<tr>\n";
+
+            $outputPics .= "<td><img src='".$row['link']."' id='".$row['id']."' /></td>\n";
+            $cell_count++;
+
+            if ($cell_count > $cols) 
+            {
+                $output .= "</tr>\n";
+                $cell_count = 1;
+            }
+    }
+
+    $outputPics .= "</table>\n";
+
     $errors="";
 
     $time;
@@ -122,7 +148,36 @@
      
 ?>
 
-<div style="background-color: lightblue; width:50%;">
+<!doctype html>
+<html>
+<head>
+<title>emidrums ADMIN</title>
+    
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+<style type="text/css">
+    
+    img{
+        width: 100px;
+        height: auto;
+    }
+    
+    .inputpan{
+        width: 50%;
+        margin: 0 auto;
+        padding: 15px;
+    }
+        
+</style>    
+    
+</head>
+    
+<body> 
+
+<div class="inputpan" style="background-color:lightblue">
     
     <h2>Post a new show: </h2>
 
@@ -148,7 +203,7 @@
         <textarea name="info" placeholder="(optional)"><?php echo $_POST['info'] ?></textarea>
         <br />
         <br />
-        <input type="submit" name="submitdate" value="upload new date...." style="position:relative; left: 75%;" />
+        <input type="submit" name="submitdate" value="post new date...." />
 
     </form> 
     
@@ -157,68 +212,93 @@
 <br />
 <br />
 
-<div style="background-color: lightgreen; width:50%;">
+    <div class="inputpan" style="background-color:lightgreen">
+
+        <h2>Upload a new picture: </h2>
+
+        <form method="post">
+
+            <label for="piclink">Insert a <strong>link</strong> to the picture</label>
+            <input type="text" name="piclink" value="<?php echo $_POST['piclink'];  ?>" />
+            <br />
+            <br />
+            <label for="descr">Insert a <strong>description</strong> for the picture</label>
+            <textarea name="descr" placeholder="(optional)"><?php echo $_POST['descr'] ?></textarea>
+            <br />
+            <br />
+            <input type="submit" name="submitpic" value="upload new picture" />
+
+        </form>
+        
+        <br />
+        
+        <h3>Currently uploaded pics (click to remove from database AND website):</h3>
+        
+        <?php echo $outputPics ?>
+
+    </div>
+
+
+    <br />
+    <br />
+
+    <div class="inputpan" style="background-color:red; color:white;">
+
+        <h2>Set the Youtube playlist: </h2>
+
+        <form method="post">
+
+            <label for="youtubelink">Insert a <strong>link</strong> to the youtube playlist</label>
+            <input type="text" name="youtubelink" value="<?php echo $_POST['youtubelink'];  ?>" />
+            <br />
+            <br />
+            <label for="descr2">Insert a <strong>description</strong> for the playlist</label>
+            <textarea name="descr2" placeholder="(optional)"><?php echo $_POST['descr2'] ?></textarea>
+            <br />
+            <br />
+            <input type="submit" name="submit-yt-pl" value="set youtube playlist" />
+
+        </form> 
+
+    </div>
+
+    <br />
+    <br />
+
+    <div class="inputpan" style="background-color:orange; color:white;">
+
+        <h2>Set the SoundCloud playlist: </h2>
+
+        <form method="post">
+
+            <label for="soundcloudlink">Insert a <strong>link</strong> to the Soundcloud playlist</label>
+            <input type="text" name="soundcloudlink" value="<?php echo $_POST['soundcloudlink'];  ?>" />
+            <br />
+            <br />
+            <label for="descr3">Insert a <strong>description</strong> for the playlist</label>
+            <textarea name="descr3" placeholder="(optional)"><?php echo $_POST['descr3'] ?></textarea>
+            <br />
+            <br />
+            <input type="submit" name="submit-sc-pl" value="set soundcloud playlist...." />
+
+        </form> 
+
+    </div>
+
     
-    <h2>Upload a new picture: </h2>
 
-    <form method="post">
-
-        <label for="piclink">Insert a <strong>link</strong> to the picture</label>
-        <input type="text" name="piclink" value="<?php echo $_POST['piclink'];  ?>" />
-        <br />
-        <br />
-        <label for="descr">Insert a <strong>description</strong> for the picture</label>
-        <textarea name="descr" placeholder="(optional)"><?php echo $_POST['descr'] ?></textarea>
-        <br />
-        <br />
-        <input type="submit" name="submitpic" value="upload new picture" style="position:relative; left:75%;" />
-
-    </form> 
+    <script type="text/javascript">
+        
+        $("img").click(function(){
+            
+            if(confirm("Do you really want to remove this pic?????"))
+            {
+                $(this).fadeOut();
+                pictureID = $(this).attr("id");
+                $.get("delete_db_items.php", {pictureID : pictureID});               
+            }                      
+        });
     
-</div>
-
-<br />
-<br />
-
-<div style="background-color: red; width:50%; color:white;">
+    </script>
     
-    <h2>Set the Youtube playlist: </h2>
-
-    <form method="post">
-
-        <label for="youtubelink">Insert a <strong>link</strong> to the youtube playlist</label>
-        <input type="text" name="youtubelink" value="<?php echo $_POST['youtubelink'];  ?>" />
-        <br />
-        <br />
-        <label for="descr2">Insert a <strong>description</strong> for the playlist</label>
-        <textarea name="descr2" placeholder="(optional)"><?php echo $_POST['descr2'] ?></textarea>
-        <br />
-        <br />
-        <input type="submit" name="submit-yt-pl" value="upload new youtube playlist" style="position:relative; left:75%;" />
-
-    </form> 
-    
-</div>
-
-<br />
-<br />
-
-<div style="background-color:orange; width:50%; color:white;">
-    
-    <h2>Set the SoundCloud playlist: </h2>
-
-    <form method="post">
-
-        <label for="soundcloudlink">Insert a <strong>link</strong> to the Soundcloud playlist</label>
-        <input type="text" name="soundcloudlink" value="<?php echo $_POST['soundcloudlink'];  ?>" />
-        <br />
-        <br />
-        <label for="descr3">Insert a <strong>description</strong> for the playlist</label>
-        <textarea name="descr3" placeholder="(optional)"><?php echo $_POST['descr3'] ?></textarea>
-        <br />
-        <br />
-        <input type="submit" name="submit-sc-pl" value="upload new soundcloud playlist" style="position:relative; left:75%;" />
-
-    </form> 
-    
-</div>
+</body>    
