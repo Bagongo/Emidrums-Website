@@ -35,6 +35,16 @@
         </div>";        
     }
 
+    $youtubePlQuery = "SELECT `link` FROM `youtubepl` ORDER by `uploaddate` DESC LIMIT 1";
+    $youtubePlresult = mysqli_query($connection, $youtubePlQuery);
+    $youtubePlLinks = mysqli_fetch_array($youtubePlresult);
+    $youtubePlActualLink = $youtubePlLinks["link"];
+
+    $soundcloudPlQuery = "SELECT `link` FROM `soundcloudpl` ORDER by `uploaddate` DESC LIMIT 1";
+    $soundcloudPlresult = mysqli_query($connection, $soundcloudPlQuery);
+    $soundcloudPlLinks = mysqli_fetch_array($soundcloudPlresult);
+    $soundcloudPlActualLink = $soundcloudPlLinks["link"];
+
 ?>
 
 
@@ -113,7 +123,7 @@
     .no-marginpadding{
         margin: 0;
         padding: 0;
-    }
+    }    
     
     #top-img-cont{
         overflow-x: hidden;
@@ -275,7 +285,7 @@
                 </button>                          
             </div>
                         
-            <div class="collapse navbar-collapse" id="navbar01">              
+            <div class="collapse navbar-collapse" id="navbar">              
                 <ul class="nav navbar-nav">
                     <li><a href="#aboutme">About me</a></li>
                     <li><a href="#dates">Dates</a></li>                                
@@ -442,7 +452,7 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
                     <hr />
 
                     <div class="embed-responsive embed-responsive-4by3 margin-bot">
-                        <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/3DS268AXc_s?list=PLQlLGuoa9jFUlyb9Tc4tT-XdM0OdRFWH0" frameborder="0" allowfullscreen></iframe>
+                        <?php echo $youtubePlActualLink; ?>
                     </div>               
                 </div>
 
@@ -455,7 +465,7 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
                     <hr />
 
                     <div class="embed-responsive embed-responsive-4by3">
-                        <iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/243523529&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+                        <?php echo $soundcloudPlActualLink; ?>
                     </div>               
                 </div>
             </div>
@@ -661,8 +671,7 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
     $(".nudgedown").mouseenter(function(){
         
         localHeaderText = $(this).find("h2").text();       
-        onSectionTrigger(localHeaderText);
-    
+        onSectionTrigger(localHeaderText);   
     });
         
     $(".nudgedown").mouseleave(function(){
@@ -681,8 +690,6 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
             $(this).next("hr").stop().fadeTo(400, 1);
             $(this).nextAll().slice(1, 2).stop().animate({marginTop: 0});       
     });
-
-
     
     $(".logo-images").hover(function() {
 		$(this).animate({paddingTop: "5px"});
@@ -708,8 +715,7 @@ Mi piacciono molto le negrrrrre e ho una mama che se truca spessisimo….! </p>
             
             $("#result-email").html(data);
             $("#result-email").fadeIn();           
-        });
-        
+        });      
     });
             
     </script>

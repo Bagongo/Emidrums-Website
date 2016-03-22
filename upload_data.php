@@ -1,4 +1,4 @@
-<?php
+ <?php
  
     session_start();    
 
@@ -45,11 +45,11 @@
                 echo "<br />show posted successfully!!!<br />";
         }      
     }
+   
+    $insertionDate;
 
     $piclink;
-    $picInsertionDate;
     $picDescription;
-
     
     if ($_POST["submitpic"])
     {
@@ -64,17 +64,62 @@
         else
         {
             $piclink = $_POST["piclink"];
-            $picInsertionDate = date("Y-m-d H:i:s");
-            $query = "INSERT INTO `piclinks` (`link`, `uploaddate`, `description`) VALUES ('".$piclink."','".$picInsertionDate."','".$picDescription."')";
+            $insertionDate = date("Y-m-d H:i:s");
+            $query = "INSERT INTO `piclinks` (`link`, `uploaddate`, `description`) VALUES ('".$piclink."','".$insertionDate."','".$picDescription."')";
             
             if(mysqli_query($connection, $query))
                 echo "<br />pic uploaded successfully!!!!<br />";
         }     
     }
 
-    
-      
-      
+    $youtubelink;
+    $youtubePlDescription;
+
+    if ($_POST["submit-yt-pl"])
+    {
+
+        if(!$_POST["descr2"])
+            $youtubePlDescription = " ";
+        else 
+            $youtubePlDescription = $_POST["descr2"];
+
+        if(!$_POST["youtubelink"] OR !preg_match('/<iframe.*src=\"(.*)\".*><\/iframe>/isU', $_POST["youtubelink"]))
+            echo "please insert a valid embed link...";
+        else
+        {
+            $youtubelink = $_POST["youtubelink"];
+            $insertionDate = date("Y-m-d H:i:s");
+            $query = "INSERT INTO `youtubepl` (`link`, `uploaddate`, `description`) VALUES ('".$youtubelink."','".$insertionDate."','".$youtubePlDescription."')";
+
+            if(mysqli_query($connection, $query))
+                echo "<br />playlist set successfully!!!!<br />";
+        }     
+    }
+
+    $soundcloudLink;
+    $soundcloudPlDescription;
+
+    if ($_POST["submit-sc-pl"])
+    {
+
+        if(!$_POST["descr3"])
+            $soundcloudPlDescription = " ";
+        else 
+            $soundcloudPlDescription = $_POST["descr3"];
+
+        if(!$_POST["soundcloudlink"] OR !preg_match('/<iframe.*src=\"(.*)\".*><\/iframe>/isU', $_POST["soundcloudlink"]))
+            echo "please insert a valid embed link...";
+        else
+        {
+            $soundcloudLink = $_POST["soundcloudlink"];
+            $insertionDate = date("Y-m-d H:i:s");
+            $query = "INSERT INTO `soundcloudpl` (`link`, `uploaddate`, `description`) VALUES ('".$soundcloudLink."','".$insertionDate."','".$soundcloudPlDescription."')";
+
+            if(mysqli_query($connection, $query))
+                echo "<br />playlist set successfully!!!!<br />";
+        }     
+    }
+     
 ?>
 
 <div style="background-color: lightblue; width:50%;">
@@ -92,18 +137,18 @@
         <br />
         <br />
         <label for="time">Insert a <strong>time</strong> for the show</label>
-        <input type="text" name="time" value="<?php echo $_POST['time'] ?>" />
+        <input type="text" name="time" value="<?php echo $_POST['time'] ?>" placeholder="(optional)" />
         <br />
         <br />
         <label for="price">Insert a <strong>price</strong> for the show</label>
-        <input type="text" name="price" value="<?php echo $_POST['price'] ?>" />
+        <input type="text" name="price" value="<?php echo $_POST['price'] ?>" placeholder="(optional)" />
         <br />
         <br />
         <label for="info">Insert additional <strong>info</strong> for the show</label>
-        <textarea name="info"><?php echo $_POST['info'] ?></textarea>
+        <textarea name="info" placeholder="(optional)"><?php echo $_POST['info'] ?></textarea>
         <br />
         <br />
-        <input type="submit" name="submitdate" value="upload new date...." />
+        <input type="submit" name="submitdate" value="upload new date...." style="position:relative; left: 75%;" />
 
     </form> 
     
@@ -126,7 +171,53 @@
         <textarea name="descr" placeholder="(optional)"><?php echo $_POST['descr'] ?></textarea>
         <br />
         <br />
-        <input type="submit" name="submitpic" value="upload new picture" />
+        <input type="submit" name="submitpic" value="upload new picture" style="position:relative; left:75%;" />
+
+    </form> 
+    
+</div>
+
+<br />
+<br />
+
+<div style="background-color: red; width:50%; color:white;">
+    
+    <h2>Set the Youtube playlist: </h2>
+
+    <form method="post">
+
+        <label for="youtubelink">Insert a <strong>link</strong> to the youtube playlist</label>
+        <input type="text" name="youtubelink" value="<?php echo $_POST['youtubelink'];  ?>" />
+        <br />
+        <br />
+        <label for="descr2">Insert a <strong>description</strong> for the playlist</label>
+        <textarea name="descr2" placeholder="(optional)"><?php echo $_POST['descr2'] ?></textarea>
+        <br />
+        <br />
+        <input type="submit" name="submit-yt-pl" value="upload new youtube playlist" style="position:relative; left:75%;" />
+
+    </form> 
+    
+</div>
+
+<br />
+<br />
+
+<div style="background-color:orange; width:50%; color:white;">
+    
+    <h2>Set the SoundCloud playlist: </h2>
+
+    <form method="post">
+
+        <label for="soundcloudlink">Insert a <strong>link</strong> to the Soundcloud playlist</label>
+        <input type="text" name="soundcloudlink" value="<?php echo $_POST['soundcloudlink'];  ?>" />
+        <br />
+        <br />
+        <label for="descr3">Insert a <strong>description</strong> for the playlist</label>
+        <textarea name="descr3" placeholder="(optional)"><?php echo $_POST['descr3'] ?></textarea>
+        <br />
+        <br />
+        <input type="submit" name="submit-sc-pl" value="upload new soundcloud playlist" style="position:relative; left:75%;" />
 
     </form> 
     
