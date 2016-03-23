@@ -4,8 +4,23 @@
 
     include("connection.php");
 
-    echo $_GET["pictureID"];
-    
+    $tourDatesQuery = "SELECT * FROM `touring` ORDER BY `dates` DESC";
+    $tourDates = mysqli_query($connection, $tourDatesQuery);
+    $datesResult;
+
+    while($row1 = mysqli_fetch_array($tourDates, MYSQLI_ASSOC)) 
+    {
+        $datesResult .= "<tr id='".$row1['id']."'>
+        <td>".$row1['dates']."</td>
+        <td>".$row1['places']."</td>
+        <td>".$row1['time']."</td>
+        <td>".$row1['price']."</td>
+        <td>".$row1['info']."</td>
+        <td class='delete-date'>X</td>
+        </tr>";
+    }
+
+
     $query = "SELECT * FROM `piclinks` ORDER BY `uploaddate` DESC "; 
     $result = mysqli_query($connection, $query);
 
@@ -13,22 +28,23 @@
     $outputPics = "<table>\n";
     $cell_count = 1;
 
-    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) 
+    while ($row2 = mysqli_fetch_array($result, MYSQLI_ASSOC)) 
     {
         if ($cell_count == 1)
             $outputPics .= "<tr>\n";
 
-            $outputPics .= "<td><img src='".$row['link']."' id='".$row['id']."' /></td>\n";
+            $outputPics .= "<td><img src='".$row2['link']."' id='".$row2['id']."' /></td>\n";
             $cell_count++;
 
             if ($cell_count > $cols) 
             {
-                $output .= "</tr>\n";
+                $outputPics .= "</tr>\n";
                 $cell_count = 1;
             }
     }
 
     $outputPics .= "</table>\n";
+
 
     $errors="";
 
@@ -170,6 +186,31 @@
         margin: 0 auto;
         padding: 15px;
     }
+    
+    #datestable{
+        width: 80%;
+        margin: 0 auto;
+        border: 1px solid gray;
+        border-collapse: collapse;
+    }
+    
+    #datestable td {
+        margin: 4px;
+        border: 1px solid gray;
+    }
+    
+    #datestable tr:hover {
+        color:antiquewhite;
+    }
+    
+    .delete-date{
+        text-align: center;
+        color: #e53434;
+    }
+    
+    .delete-date:hover{
+        color: #772020;
+    }
         
 </style>    
     
@@ -177,47 +218,53 @@
     
 <body> 
 
-<div class="inputpan" style="background-color:lightblue">
+    <div class="inputpan" style="background-color:lightblue">
     
-    <h2>Post a new show: </h2>
+        <h2>Post a new show: </h2>
 
-    <form method="post">
+        <form method="post">
+            <label for="showdate">Insert a <strong>date</strong> for the show <u>in the format YYYY-mm-dd</u></label>
+            <input type="date" name="showdate" value="<?php echo $_POST['showdate'];  ?>" />
+            <br />
+            <br />
+            <label for="where">Insert a <strong>location</strong> for the show</label>
+            <input type="text" name="where" value="<?php echo $_POST['where'] ?>" />
+            <br />
+            <br />
+            <label for="time">Insert a <strong>time</strong> for the show</label>
+            <input type="text" name="time" value="<?php echo $_POST['time'] ?>" placeholder="(optional)" />
+            <br />
+            <br />
+            <label for="price">Insert a <strong>price</strong> for the show</label>
+            <input type="text" name="price" value="<?php echo $_POST['price'] ?>" placeholder="(optional)" />
+            <br />
+            <br />
+            <label for="info">Insert additional <strong>info</strong> for the show</label>
+            <textarea name="info" placeholder="(optional)"><?php echo $_POST['info'] ?></textarea>
+            <br />
+            <br />
+            <input type="submit" name="submitdate" value="post new date...." />
+        </form>
+        
+        <br />
+        
+        <h3>Currently uploaded Dates (click the 'X' to delete....): </h3>
+        
+        <table id="datestable">
+            <tr><th>Where</th><th>When</th><th>Time</th><th>Price</th><th>Info</th></tr>
+            <?php echo $datesResult ?>
+        </table>
+            
+    </div>
 
-        <label for="showdate">Insert a <strong>date</strong> for the show <u>in the format YYYY-mm-dd</u></label>
-        <input type="date" name="showdate" value="<?php echo $_POST['showdate'];  ?>" />
-        <br />
-        <br />
-        <label for="where">Insert a <strong>location</strong> for the show</label>
-        <input type="text" name="where" value="<?php echo $_POST['where'] ?>" />
-        <br />
-        <br />
-        <label for="time">Insert a <strong>time</strong> for the show</label>
-        <input type="text" name="time" value="<?php echo $_POST['time'] ?>" placeholder="(optional)" />
-        <br />
-        <br />
-        <label for="price">Insert a <strong>price</strong> for the show</label>
-        <input type="text" name="price" value="<?php echo $_POST['price'] ?>" placeholder="(optional)" />
-        <br />
-        <br />
-        <label for="info">Insert additional <strong>info</strong> for the show</label>
-        <textarea name="info" placeholder="(optional)"><?php echo $_POST['info'] ?></textarea>
-        <br />
-        <br />
-        <input type="submit" name="submitdate" value="post new date...." />
-
-    </form> 
-    
-</div>
-
-<br />
-<br />
+    <br />
+    <br />
 
     <div class="inputpan" style="background-color:lightgreen">
 
         <h2>Upload a new picture: </h2>
 
         <form method="post">
-
             <label for="piclink">Insert a <strong>link</strong> to the picture</label>
             <input type="text" name="piclink" value="<?php echo $_POST['piclink'];  ?>" />
             <br />
@@ -227,7 +274,6 @@
             <br />
             <br />
             <input type="submit" name="submitpic" value="upload new picture" />
-
         </form>
         
         <br />
@@ -238,7 +284,6 @@
 
     </div>
 
-
     <br />
     <br />
 
@@ -247,7 +292,6 @@
         <h2>Set the Youtube playlist: </h2>
 
         <form method="post">
-
             <label for="youtubelink">Insert a <strong>link</strong> to the youtube playlist</label>
             <input type="text" name="youtubelink" value="<?php echo $_POST['youtubelink'];  ?>" />
             <br />
@@ -257,7 +301,6 @@
             <br />
             <br />
             <input type="submit" name="submit-yt-pl" value="set youtube playlist" />
-
         </form> 
 
     </div>
@@ -270,7 +313,6 @@
         <h2>Set the SoundCloud playlist: </h2>
 
         <form method="post">
-
             <label for="soundcloudlink">Insert a <strong>link</strong> to the Soundcloud playlist</label>
             <input type="text" name="soundcloudlink" value="<?php echo $_POST['soundcloudlink'];  ?>" />
             <br />
@@ -280,12 +322,9 @@
             <br />
             <br />
             <input type="submit" name="submit-sc-pl" value="set soundcloud playlist...." />
-
         </form> 
 
     </div>
-
-    
 
     <script type="text/javascript">
         
@@ -297,6 +336,18 @@
                 pictureID = $(this).attr("id");
                 $.get("delete_db_items.php", {pictureID : pictureID});               
             }                      
+        });
+        
+        $(".delete-date").click(function(){
+            
+            if(confirm("Do you really want to remove this date????"))
+            {
+                $(this).parent("tr").fadeOut();
+                dateID = $(this).parent("tr").attr("id");
+                $.get("delete_db_items.php", {dateID : dateID}, function(data){
+                    alert(data);
+                });           
+            }
         });
     
     </script>

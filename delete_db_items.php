@@ -2,11 +2,20 @@
 
     include("connection.php");
 
-    $picToDel = $_GET["pictureID"];
+    if ($_GET["pictureID"])
+    {
+        $picToDel = $_GET["pictureID"];
+        $query = "DELETE FROM `piclinks` WHERE `id`='".$picToDel."'";
+    }
 
-    $query = "DELETE FROM `piclinks` WHERE `id`='".$picToDel."'";
+    if($_GET["dateID"])
+    {
+        $dateToDel = $_GET["dateID"];
+        $query = "DELETE FROM `touring` WHERE `id`='".$dateToDel."'";
+    }
+
 
     mysqli_query($connection, $query);
-    //echo "successfully deleted pic: $picToDel";
+    echo "successfully deleted: $dateToDel";
 
 ?>
